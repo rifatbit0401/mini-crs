@@ -29,6 +29,7 @@ def load_config() -> dict:
     cfg = {
         "json_path": str(CODE_DB_DIR / "code_db.json"),
         "vuln_output": str(ROOT / "static-analyzer" / "vulnerable_functions.json"),
+        "crash_report": str(ROOT / "fuzzer" / "crashes_report.json"),
     }
     if not CONFIG_PATH.exists():
         return cfg
@@ -46,6 +47,8 @@ def load_config() -> dict:
             cfg["json_path"] = value
         if key == "vuln_output" and value:
             cfg["vuln_output"] = value
+        if key == "crash_report" and value:
+            cfg["crash_report"] = value
     return cfg
 
 
@@ -75,6 +78,8 @@ def main() -> None:
     config = load_config()
     default_out = ROOT / config["json_path"]
     default_vuln_out = ROOT / config["vuln_output"]
+    default_crash_report = ROOT / config["crash_report"]
+    harness_index = ROOT / "fuzzer" / "harnesses.json"
 
     target = Path(args[0]) if len(args) >= 1 else ROOT / "ossfuzz-target"
     out_path = Path(args[1]) if len(args) >= 2 else default_out
@@ -101,6 +106,49 @@ def main() -> None:
     if result.returncode != 0:
         raise SystemExit(f"[static-analyzer] Static analysis failed with exit code {result.returncode}")
     print(f"[static-analyzer] Vulnerable functions written to {vuln_out}")
+
+    # Generate harnesses based on vulnerable functions
+    print("[harness] Generating AFL++ harnesses from vulnerable_functions.json ...")
+    result = subprocess.run(
+        ["python3", "fuzzer/generate_harnesses.py"],
+        cwd=ROOT,
+    )
+    if result.returncode != 0:
+        raise SystemExit(f"[harness] Harness generation failed with exit code {result.returncode}")
+    print(f"[harness] Harness index written to {harness_index}")
+
+    # Run AFL++ across all harnesses
+    print("[fuzz] Running AFL++ on all harnesses (see fuzzer/out-* for results)...")
+    result = subprocess.run(
+        ["bash", "fuzzer/Afl++/run_afl_all.sh"],
+        cwd=ROOT,
+    )
+    if result.returncode != 0:
+        raise SystemExit(f"[fuzz] AFL++ run failed with exit code {result.returncode}")
+    print("[fuzz] AFL++ runs started/completed (check fuzzer/out-*).")
+
+    # Collect crash reports
+    print("[crash] Collecting crash reports from AFL++ outputs ...")
+    result = subprocess.run(
+        ["python3", "fuzzer/collect_crashes.py", str(default_crash_report)],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    sys.stdout.write(result.stdout)
+    sys.stderr.write(result.stderr)
+    if result.returncode != 0:
+        raise SystemExit(f"[crash] Crash collection failed with exit code {result.returncode}")
+    try:
+        with open(default_crash_report, "r") as f:
+            data = json.load(f)
+        total_crashes = sum(len(h.get("crashes", [])) for h in data.get("harnesses", []))
+    except Exception:
+        total_crashes = None
+    if total_crashes is None:
+        print(f"[crash] Crash summary written to {default_crash_report}")
+    else:
+        print(f"[crash] Crash summary written to {default_crash_report} (total crashes: {total_crashes})")
 
 
 if __name__ == "__main__":

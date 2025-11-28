@@ -1,1 +1,0 @@
-{"languages":{"cpp":{"displayName":"C/C++","files":["src/vuln_lib.c","include/vuln_lib.h","fuzz/fuzz_target.cc"],"linesOfCode":119,"name":"cpp"},"actions":{"displayName":"GitHub Actions","files":[],"linesOfCode":0,"name":"actions"}}}

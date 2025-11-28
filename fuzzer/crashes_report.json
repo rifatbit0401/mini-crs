@@ -1,0 +1,75 @@
+{
+  "harnesses": [
+    {
+      "harness": "fuzzer/harnesses/copy_to_stack_afl.c",
+      "function": "copy_to_stack",
+      "crashes": []
+    },
+    {
+      "harness": "fuzzer/harnesses/heap_overflow_afl.c",
+      "function": "heap_overflow",
+      "crashes": []
+    },
+    {
+      "harness": "fuzzer/harnesses/instant_crash_afl.c",
+      "function": "instant_crash",
+      "crashes": [
+        {
+          "path": "fuzzer/out-instant_crash_afl-1764313322/default/crashes/id:000000,sig:11,src:000003,time:335,execs:28,op:havoc,rep:2",
+          "id": "000000",
+          "sig": "11",
+          "src": "000003",
+          "time": "335",
+          "execs": "28",
+          "op": "havoc",
+          "rep": "2"
+        },
+        {
+          "path": "fuzzer/out-instant_crash_afl-1764314184/default/crashes/id:000000,sig:11,src:000003,time:280,execs:27,op:havoc,rep:7",
+          "id": "000000",
+          "sig": "11",
+          "src": "000003",
+          "time": "280",
+          "execs": "27",
+          "op": "havoc",
+          "rep": "7"
+        },
+        {
+          "path": "fuzzer/out-instant_crash_afl-1764311600/default/crashes/id:000000,sig:11,src:000003,time:306,execs:27,op:havoc,rep:3",
+          "id": "000000",
+          "sig": "11",
+          "src": "000003",
+          "time": "306",
+          "execs": "27",
+          "op": "havoc",
+          "rep": "3"
+        },
+        {
+          "path": "fuzzer/out-instant_crash_afl-1764313767/default/crashes/id:000000,sig:11,src:000003,time:305,execs:28,op:havoc,rep:2",
+          "id": "000000",
+          "sig": "11",
+          "src": "000003",
+          "time": "305",
+          "execs": "28",
+          "op": "havoc",
+          "rep": "2"
+        }
+      ]
+    },
+    {
+      "harness": "fuzzer/harnesses/parse_chunks_afl.c",
+      "function": "parse_chunks",
+      "crashes": []
+    },
+    {
+      "harness": "fuzzer/harnesses/temporal_issues_afl.c",
+      "function": "temporal_issues",
+      "crashes": []
+    },
+    {
+      "harness": "fuzzer/harnesses/unchecked_format_afl.c",
+      "function": "unchecked_format",
+      "crashes": []
+    }
+  ]
+}

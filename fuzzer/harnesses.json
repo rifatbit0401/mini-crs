@@ -1,0 +1,10 @@
+{
+  "harnesses": [
+    "fuzzer/harnesses/copy_to_stack_afl.c",
+    "fuzzer/harnesses/heap_overflow_afl.c",
+    "fuzzer/harnesses/instant_crash_afl.c",
+    "fuzzer/harnesses/parse_chunks_afl.c",
+    "fuzzer/harnesses/temporal_issues_afl.c",
+    "fuzzer/harnesses/unchecked_format_afl.c"
+  ]
+}

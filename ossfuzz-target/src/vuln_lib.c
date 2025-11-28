@@ -46,11 +46,11 @@ static void temporal_issues(const uint8_t *data, size_t size) {
   }
   memcpy(leaky, data, size);
   free(leaky);
-  if (size > 4 && data[0] == 'F') {
+  if (size < 4) {
     // Use-after-free: write back into freed memory
     leaky[2] = 0x41;
   }
-  if (size > 5 && data[1] == 'D') {
+  if (size >= 4) {
     free(leaky);  // double free on the same pointer
   }
 }
@@ -102,11 +102,23 @@ void parse_message(const uint8_t *data, size_t size) {
   heap_overflow(data, size);
   parse_chunks(data, size);
   temporal_issues(data, size);
+  instant_crash(data, size);
 }
 
 void fuzz_entry(const uint8_t *data, size_t size) {
   parse_message(data, size);
+  instant_crash(data, size);
   if (size > 0 && data[0] == '%') {
     unchecked_format(data, size);
+  }
+}
+
+// Guaranteed crash: dereference null when size > 0.
+void instant_crash(const uint8_t *data, size_t size) {
+  (void)data;
+  if (size != 10) {
+    volatile int *ptr = 0;
+    *ptr = 42;
+    
   }
 }

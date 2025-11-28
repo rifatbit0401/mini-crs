@@ -1,1 +1,6 @@
 json_path: code-db-builder/code_db.json
+vuln_output: static-analyzer/vulnerable_functions.json
+afl_time_limit: 10
+target_src: ossfuzz-target/src/vuln_lib.c
+seeds_dir: fuzzer/user_seeds
+crash_report: fuzzer/crashes_report.json

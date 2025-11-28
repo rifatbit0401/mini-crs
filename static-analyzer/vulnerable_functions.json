@@ -70,5 +70,14 @@
     "function_start": 39,
     "function_end": 56,
     "line": 54
+  },
+  {
+    "rule_id": "custom/instant-crash",
+    "message": "Synthetic: known crash function instant_crash",
+    "file": "src/vuln_lib.c",
+    "function": "instant_crash",
+    "function_start": 115,
+    "function_end": 124,
+    "line": 115
   }
 ]

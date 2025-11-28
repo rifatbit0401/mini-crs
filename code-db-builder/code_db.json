@@ -46,12 +46,17 @@
         {
           "name": "parse_message",
           "start_line": 96,
-          "end_line": 105
+          "end_line": 106
         },
         {
           "name": "fuzz_entry",
-          "start_line": 106,
-          "end_line": 112
+          "start_line": 107,
+          "end_line": 114
+        },
+        {
+          "name": "instant_crash",
+          "start_line": 115,
+          "end_line": 124
         }
       ]
     }
