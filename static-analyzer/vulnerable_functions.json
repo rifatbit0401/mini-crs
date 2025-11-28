@@ -1,0 +1,74 @@
+[
+  {
+    "rule_id": "custom/format-string",
+    "message": "Non-literal format string may expose format-string vulnerability",
+    "file": "src/vuln_lib.c",
+    "function": "unchecked_format",
+    "function_start": 57,
+    "function_end": 67,
+    "line": 65
+  },
+  {
+    "rule_id": "custom/unsafe-copy",
+    "message": "Potential unsafe copy via memcpy",
+    "file": "src/vuln_lib.c",
+    "function": "parse_chunks",
+    "function_start": 68,
+    "function_end": 95,
+    "line": 87
+  },
+  {
+    "rule_id": "custom/unsafe-copy",
+    "message": "Potential unsafe copy via memcpy",
+    "file": "src/vuln_lib.c",
+    "function": "unchecked_format",
+    "function_start": 57,
+    "function_end": 67,
+    "line": 62
+  },
+  {
+    "rule_id": "custom/unsafe-copy",
+    "message": "Potential unsafe copy via memcpy",
+    "file": "src/vuln_lib.c",
+    "function": "temporal_issues",
+    "function_start": 39,
+    "function_end": 56,
+    "line": 47
+  },
+  {
+    "rule_id": "custom/unsafe-copy",
+    "message": "Potential unsafe copy via memcpy",
+    "file": "src/vuln_lib.c",
+    "function": "heap_overflow",
+    "function_start": 19,
+    "function_end": 38,
+    "line": 33
+  },
+  {
+    "rule_id": "custom/unsafe-copy",
+    "message": "Potential unsafe copy via memcpy",
+    "file": "src/vuln_lib.c",
+    "function": "copy_to_stack",
+    "function_start": 1,
+    "function_end": 18,
+    "line": 13
+  },
+  {
+    "rule_id": "custom/use-after-free-hint",
+    "message": "Heuristic use-after-free of 'leaky'",
+    "file": "src/vuln_lib.c",
+    "function": "temporal_issues",
+    "function_start": 39,
+    "function_end": 56,
+    "line": 51
+  },
+  {
+    "rule_id": "custom/use-after-free-hint",
+    "message": "Heuristic use-after-free of 'leaky'",
+    "file": "src/vuln_lib.c",
+    "function": "temporal_issues",
+    "function_start": 39,
+    "function_end": 56,
+    "line": 54
+  }
+]

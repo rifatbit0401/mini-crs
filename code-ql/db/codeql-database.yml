@@ -1,0 +1,12 @@
+---
+sourceLocationPrefix: /workspace/ossfuzz-target
+baselineLinesOfCode: 119
+unicodeNewlines: false
+columnKind: utf8
+primaryLanguage: cpp
+creationMetadata:
+  cliVersion: 2.23.6
+  creationTime: 2025-11-28T03:14:37.398211383Z
+overlayBaseDatabase: false
+overlayDatabase: false
+finalised: true

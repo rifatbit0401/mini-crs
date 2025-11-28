@@ -1,0 +1,74 @@
+[
+  {
+    "file": "src/vuln_lib.c",
+    "function": "copy_to_stack",
+    "start_line": 1,
+    "end_line": 18,
+    "issues": [
+      {
+        "type": "unsafe_copy",
+        "detail": "Uses memcpy/strcpy/strcat/sprintf without bounds checks"
+      }
+    ]
+  },
+  {
+    "file": "src/vuln_lib.c",
+    "function": "heap_overflow",
+    "start_line": 19,
+    "end_line": 38,
+    "issues": [
+      {
+        "type": "unsafe_copy",
+        "detail": "Uses memcpy/strcpy/strcat/sprintf without bounds checks"
+      }
+    ]
+  },
+  {
+    "file": "src/vuln_lib.c",
+    "function": "temporal_issues",
+    "start_line": 39,
+    "end_line": 56,
+    "issues": [
+      {
+        "type": "unsafe_copy",
+        "detail": "Uses memcpy/strcpy/strcat/sprintf without bounds checks"
+      },
+      {
+        "type": "double_free",
+        "detail": "Multiple frees detected: leaky, leaky"
+      },
+      {
+        "type": "use_after_free",
+        "detail": "Use of 'leaky' after free"
+      }
+    ]
+  },
+  {
+    "file": "src/vuln_lib.c",
+    "function": "unchecked_format",
+    "start_line": 57,
+    "end_line": 67,
+    "issues": [
+      {
+        "type": "unsafe_copy",
+        "detail": "Uses memcpy/strcpy/strcat/sprintf without bounds checks"
+      },
+      {
+        "type": "format_string",
+        "detail": "printf without literal format: printf(fmt);"
+      }
+    ]
+  },
+  {
+    "file": "src/vuln_lib.c",
+    "function": "parse_chunks",
+    "start_line": 68,
+    "end_line": 95,
+    "issues": [
+      {
+        "type": "unsafe_copy",
+        "detail": "Uses memcpy/strcpy/strcat/sprintf without bounds checks"
+      }
+    ]
+  }
+]

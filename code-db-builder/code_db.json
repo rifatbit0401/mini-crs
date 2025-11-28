@@ -1,0 +1,59 @@
+{
+  "project_root": "/home/rifat/Desktop/UCSB/Fall-25/security/mini-crs/ossfuzz-target",
+  "files": [
+    {
+      "path": "fuzz/fuzz_target.cc",
+      "functions": [
+        {
+          "name": "LLVMFuzzerTestOneInput",
+          "start_line": 1,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "path": "include/vuln_lib.h",
+      "functions": []
+    },
+    {
+      "path": "src/vuln_lib.c",
+      "functions": [
+        {
+          "name": "copy_to_stack",
+          "start_line": 1,
+          "end_line": 18
+        },
+        {
+          "name": "heap_overflow",
+          "start_line": 19,
+          "end_line": 38
+        },
+        {
+          "name": "temporal_issues",
+          "start_line": 39,
+          "end_line": 56
+        },
+        {
+          "name": "unchecked_format",
+          "start_line": 57,
+          "end_line": 67
+        },
+        {
+          "name": "parse_chunks",
+          "start_line": 68,
+          "end_line": 95
+        },
+        {
+          "name": "parse_message",
+          "start_line": 96,
+          "end_line": 105
+        },
+        {
+          "name": "fuzz_entry",
+          "start_line": 106,
+          "end_line": 112
+        }
+      ]
+    }
+  ]
+}
